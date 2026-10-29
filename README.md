@@ -1,4 +1,4 @@
-# publish-to-filecoin
+# Publish to Filecoin Onchain Cloud
 
 An agent skill for publishing ephemeral, non-production artifacts (files, folders, static sites) to [Filecoin Onchain Cloud](https://filecoin.cloud) using the [`filecoin` CLI](https://docs.filecoin.io/build-on-filecoin/filecoin-for-agents/cli). It returns links you can share.
 
