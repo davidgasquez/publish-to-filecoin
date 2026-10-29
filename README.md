@@ -1,66 +1,17 @@
-# Filecoin Pin Upload CLI 🧷
+# publish-to-filecoin
 
-Small test CLI for uploading a file or folder through the same Calibration
-testnet flow used by `https://pin.filecoin.cloud`.
+An agent skill for publishing ephemeral, non-production artifacts (files, folders, static sites) to [Filecoin Onchain Cloud](https://filecoin.cloud) using the [`filecoin` CLI](https://docs.filecoin.io/build-on-filecoin/filecoin-for-agents/cli). It returns links you can share.
 
-This repo is for testing and demos only. By default it uses Calibration testnet
-and the public scoped demo credentials from `pin.filecoin.cloud`.
+It runs on the Calibration testnet with the public demo key from [pin.filecoin.cloud](https://pin.filecoin.cloud). Only use it for tests and demos. Never upload private data.
 
-## Quickstart
+## Usage
 
-Clone and:
+Copy [`SKILL.md`](https://raw.githubusercontent.com/davidgasquez/publish-to-filecoin/main/SKILL.md) into your agent's skills directory (for example `~/.agents/skills/publish-to-filecoin/SKILL.md`). Then ask the agent to "publish this folder to Filecoin".
 
-```bash
-./pin-upload.mjs <file-or-folder>
-```
-
-Optional:
-
-```bash
-./pin-upload.mjs <file-or-folder> --copies 2
-./pin-upload.mjs <file-or-folder> --ipni
-```
-
-Env overrides:
-
-```bash
-WALLET_ADDRESS=0x... SESSION_KEY=0x... RPC_URL=https://... ./pin-upload.mjs ./file.txt
-```
-
-## Run from GitHub
-
-```bash
-npx --yes github:davidgasquez/filecoin-pin-upload <file-or-folder>
-```
-
-Do not use this default configuration for production uploads. Anyone running the
-repo without env overrides uses the same public Calibration demo wallet/session
-key configured in `pin-upload.mjs`.
-
-Default uploads use one copy on Calibration provider `2` (`ezpdpz-calib2`) so
-the command completes without interactive provider selection.
-
-## CIDs and links
-
-Use the `Root CID` for IPFS gateway links:
+For a one-off, skip installing and paste this prompt to your agent:
 
 ```text
-https://<root-cid>.ipfs.inbrowser.link
-https://ipfs.io/ipfs/<root-cid>
+Follow https://raw.githubusercontent.com/davidgasquez/publish-to-filecoin/main/SKILL.md to publish this folder
 ```
 
-Do not use the `Piece CID` in an IPFS gateway URL. The `Piece CID` identifies
-the Filecoin/PDP piece and is used with the provider retrieval URL printed in
-the `Copy: ... url=...` line.
-
-The CLI prints both links after a successful upload:
-
-```text
-Root CID: bafk...
-IPFS in-browser link: https://bafk....ipfs.inbrowser.link
-IPFS gateway link: https://ipfs.io/ipfs/bafk...
-Piece CID: bafkz...
-```
-
-For command-line verification, use the `ipfs.io` link. `inbrowser.link` serves
-a browser service-worker shell to non-browser clients such as `curl`.
+Requires Node.js 24 or newer.
